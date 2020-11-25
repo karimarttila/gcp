@@ -23,3 +23,6 @@ simple-server-eks/terraform/envs/dev/.terraform/
 .ssh/
 
 personal/
+
+.terraform/
+

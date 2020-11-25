@@ -9,3 +9,8 @@
 7. ./create-infra-configuration.sh
 
 **NOTE:** We don't create the infra project here - we create it as part of the Terraform solution.
+
+When running various environments change the `TF_VAR_prefix` environment variable, e.g.:
+```bash
+export TF_VAR_prefix=dev
+```
