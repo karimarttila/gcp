@@ -1,22 +1,24 @@
 locals {
-  workspace_name = terraform.workspace == "default" ? "" : "-${terraform.workspace}"
+  workspace_name = terraform.workspace
   module_name    = "project"
-  res_prefix     = "${var.prefix}${local.workspace_name}"
+  res_prefix     = "${var.PREFIX}-${local.workspace_name}"
   default_labels = {
     resprefix = local.res_prefix
-    prefix    = var.prefix
+    prefix    = var.PREFIX
     workspace = terraform.workspace
     module    = local.module_name
     region    = var.REGION
     zone      = var.ZONE1
+    owner     = var.OWNER
+    project   = var.PROJECT
     terraform = "true"
   }
 }
 
 resource "google_project" "infra_project" {
   provider            = google
-  name                = var.INFRA_PROJ_NAME
-  project_id          = var.INFRA_PROJ_ID
+  name                = "${local.res_prefix}-${local.module_name}"
+  project_id          = "${local.res_prefix}-${var.INFRA_PROJ_ID}"
   folder_id           = var.FOLDER_ID
   billing_account     = var.BILLING_ACCOUNT_ID
   auto_create_network = false
@@ -28,12 +30,13 @@ resource "google_project" "infra_project" {
 
 
 resource "google_project_service" "service" {
-  project = google_project.infra_project.project_id
+  provider           = google
+  project            = google_project.infra_project.project_id
   disable_on_destroy = false
 
   for_each = toset([
     "oslogin.googleapis.com",
     "compute.googleapis.com"
   ])
-  service = each.key
+  service  = each.key
 }

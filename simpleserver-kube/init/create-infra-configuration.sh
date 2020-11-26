@@ -6,13 +6,13 @@ echo "Check the actual infra project id using gcloud"
 
 if [ $# -ne 1 ]
 then
-  echo "Usage: ./create-infra-configuration.sh <env>"
+  echo "Usage: ./create-infra-configuration.sh <terraform-workspace>"
+  echo "NOTE: <terraform-workspace> is default, dev, qa..."
   exit 1
 fi
 
 MY_ENV=$1
-MY_INFRA_PROJ_ID="${MY_ENV}-${TF_VAR_INFRA_PROJ_ID}"
-
+MY_INFRA_PROJ_ID="${MY_ENV}-${TF_VAR_PREFIX}-${TF_VAR_INFRA_PROJ_ID}"
 # Create gcloud configuration for infra project.
 echo "*** Creating gcloud configuration... ***"
 gcloud config configurations create $MY_INFRA_PROJ_ID

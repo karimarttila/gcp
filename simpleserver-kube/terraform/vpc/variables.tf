@@ -1,7 +1,4 @@
-variable "PREFIX" {
-  description = "Prefix that is appended to resource names"
-  type        = string
-}
+variable "PREFIX" {}
 variable "REGION" {}
 variable "ZONE1" {}
 variable "ADMIN_PROJ_ID" {}
@@ -15,3 +12,8 @@ variable "BILLING_ACCOUNT_ID" {}
 variable "CREDS" {}
 variable "OWNER" {}
 variable "PROJECT" {}
+
+variable "kube_subnet_cidr_block" {
+  type = string
+  default = "10.50.1.0/24"
+}

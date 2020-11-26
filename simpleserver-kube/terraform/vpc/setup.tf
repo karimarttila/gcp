@@ -18,9 +18,20 @@ terraform {
     # NOTE ***********************************************************************************************
     # NOTE: Change here the bucket name that you use to store Terraform backend.
     # NOTE: Variables not allowed here, therefore check it: echo $TF_VAR_TERRA_BACKEND_BUCKET_NAME
+    # NOTE: and echo $TF_VAR_INFRA_PROJ_ID
     # NOTE ***********************************************************************************************
     # $TF_VAR_TERRA_BACKEND_BUCKET_NAME
     bucket = "kari-kube-terraform-2"
+    # $TF_VAR_INFRA_PROJ_ID/module/terraform.tfstate
+    prefix = "kari-kube-id-8/vpc"
+  }
+}
+
+data "terraform_remote_state" "project" {
+  backend   = "gcs"
+  workspace = terraform.workspace
+  config = {
+    bucket = var.TERRA_BACKEND_BUCKET_NAME
     prefix = "kari-kube-id-8/project"
   }
 }
