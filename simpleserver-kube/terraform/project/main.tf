@@ -36,7 +36,12 @@ resource "google_project_service" "service" {
 
   for_each = toset([
     "oslogin.googleapis.com",
-    "compute.googleapis.com"
+    # E.g. for bastion.
+    "compute.googleapis.com",
+    # Kubernetes (GKE) needs this.
+    "container.googleapis.com",
+    # If you want to list network resources.
+    "networkmanagement.googleapis.com"
   ])
   service  = each.key
 }

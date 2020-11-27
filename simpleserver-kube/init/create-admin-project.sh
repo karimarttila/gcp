@@ -29,3 +29,5 @@ gcloud config get-value project
 # Assign billing account
 #gcloud beta billing accounts list
 gcloud beta billing projects link $TF_VAR_ADMIN_PROJ_ID --billing-account $TF_VAR_BILLING_ACCOUNT_ID
+# Required or the Terraform service account cannot create the Kube cluster.
+gcloud services enable container.googleapis.com

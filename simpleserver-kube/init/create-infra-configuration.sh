@@ -12,7 +12,7 @@ then
 fi
 
 MY_ENV=$1
-MY_INFRA_PROJ_ID="${MY_ENV}-${TF_VAR_PREFIX}-${TF_VAR_INFRA_PROJ_ID}"
+MY_INFRA_PROJ_ID="${TF_VAR_PREFIX}-${MY_ENV}-${TF_VAR_INFRA_PROJ_ID}"
 # Create gcloud configuration for infra project.
 echo "*** Creating gcloud configuration... ***"
 gcloud config configurations create $MY_INFRA_PROJ_ID
