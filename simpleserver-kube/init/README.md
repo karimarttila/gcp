@@ -3,10 +3,11 @@
 1. gcloud auth login
 2. Copy-paste env-vars-template.sh to ~/.gcp/YOUR-PROJ-env-vars.sh
 3. Provide the values in ~/.gcp/YOUR-PROJ-env-vars.sh
-4. ./create-admin-project.sh
-5. ./create-service-account.sh
-6. ./create-admin-bucket.sh
-7. ./create-infra-configuration.sh
+4. `source` that file to your terminal
+5. ./create-admin-project.sh
+6. ./create-service-account.sh
+7. ./create-admin-bucket.sh
+8. ./create-infra-configuration.sh
 
 **NOTE:** We don't create the infra project here - we create it as part of the Terraform solution.
 

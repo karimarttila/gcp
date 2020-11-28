@@ -18,5 +18,5 @@ variable "GKE_PASSWORD" {}
 
 variable "gke_nodes" {
   type    = number
-  default = 2
+  default = 1
 }
