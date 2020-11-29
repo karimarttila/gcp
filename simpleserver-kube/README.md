@@ -4,4 +4,6 @@
 2. Create Admin project and SA in the [init](init) directory.
 3. Use Terraform to create modules in the [terraform](terraform) directory. Order of creation: project, vpc, kube.
 
+Dependencies:
+
 ![dependencies](terraform/dependencies.png)
