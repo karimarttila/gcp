@@ -12,15 +12,10 @@ provider "google-beta" {
   region      = var.REGION
 }
 
+# NOTE: Initialize terraform backend with init.sh script!
 terraform {
   required_version = ">=0.13.4"
   backend "gcs" {
-    # NOTE ***********************************************************************************************
-    # NOTE: Change here the bucket name that you use to store Terraform backend.
-    # NOTE: Variables not allowed here, therefore check it: echo $TF_VAR_TERRA_BACKEND_BUCKET_NAME
-    # NOTE ***********************************************************************************************
-    # $TF_VAR_TERRA_BACKEND_BUCKET_NAME
-    bucket = "kari-kube-terraform-2"
-    prefix = "kari-kube-id-8/project"
   }
 }
+

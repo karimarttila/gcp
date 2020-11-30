@@ -12,18 +12,10 @@ provider "google-beta" {
   region      = var.REGION
 }
 
+# NOTE: Initialize terraform backend with init.sh script!
 terraform {
   required_version = ">=0.13.4"
   backend "gcs" {
-    # NOTE ***********************************************************************************************
-    # NOTE: Change here the bucket name that you use to store Terraform backend.
-    # NOTE: Variables not allowed here, therefore check it: echo $TF_VAR_TERRA_BACKEND_BUCKET_NAME
-    # NOTE: and echo $TF_VAR_INFRA_PROJ_ID
-    # NOTE ***********************************************************************************************
-    # $TF_VAR_TERRA_BACKEND_BUCKET_NAME
-    bucket = "kari-kube-terraform-2"
-    # $TF_VAR_INFRA_PROJ_ID/module/terraform.tfstate
-    prefix = "kari-kube-id-8/kube"
   }
 }
 
@@ -32,7 +24,7 @@ data "terraform_remote_state" "project" {
   workspace = terraform.workspace
   config    = {
     bucket = var.TERRA_BACKEND_BUCKET_NAME
-    prefix = "kari-kube-id-8/project"
+    prefix = "${var.PREFIX}-${var.INFRA_PROJ_ID}/project"
   }
 }
 
@@ -41,6 +33,7 @@ data "terraform_remote_state" "vpc" {
   workspace = terraform.workspace
   config    = {
     bucket = var.TERRA_BACKEND_BUCKET_NAME
-    prefix = "kari-kube-id-8/vpc"
+    prefix = "${var.PREFIX}-${var.INFRA_PROJ_ID}/vpc"
   }
 }
+

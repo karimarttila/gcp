@@ -28,7 +28,6 @@ resource "google_project" "infra_project" {
   })
 }
 
-
 resource "google_project_service" "service" {
   provider           = google
   project            = google_project.infra_project.project_id
@@ -45,3 +44,4 @@ resource "google_project_service" "service" {
   ])
   service  = each.key
 }
+

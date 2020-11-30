@@ -31,13 +31,6 @@ gcloud projects add-iam-policy-binding ${TF_VAR_ADMIN_PROJ_ID} \
   --member serviceAccount:${SA_NAME} \
   --role roles/storage.admin
 
-gcloud services enable cloudresourcemanager.googleapis.com
-gcloud services enable cloudbilling.googleapis.com
-gcloud services enable iam.googleapis.com
-gcloud services enable compute.googleapis.com
-gcloud services enable serviceusage.googleapis.com
-
-
 gcloud organizations add-iam-policy-binding ${TF_VAR_ORG_ID} \
   --member serviceAccount:${SA_NAME} \
   --role roles/resourcemanager.projectCreator
